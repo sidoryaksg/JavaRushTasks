@@ -1,4 +1,21 @@
-﻿#############
+#############
 ## Idea
 #############
-out.log*
+target/
+.idea/
+.idea
+.repository/
+*.iml
+*.iws
+*.jrtc
+*.java
+*.class
+*.info
+*.properties
+*.jar
+
+/out/
+/Instruction.png
+/out.log
+/out.log.*
+
