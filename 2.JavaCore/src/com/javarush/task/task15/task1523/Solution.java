@@ -6,7 +6,21 @@ package com.javarush.task.task15.task1523;
 
 public class Solution {
     public static void main(String[] args) {
-
     }
+        public Solution () {}
+
+        private Solution(String s) {
+
+        }
+
+        protected Solution(int a) {
+
+        }
+
+        Solution (int a, int b) {
+
+        }
+
+
 }
 
