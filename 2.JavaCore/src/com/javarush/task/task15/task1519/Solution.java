@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 public class Solution {
     public static void main(String[] args) throws IOException {
         //напиште тут ваш код
-        BufferedReader reader = new BufferedReader(new InputStreamReader);
+        //BufferedReader reader = new BufferedReader(new InputStreamReader);
 
 
 
