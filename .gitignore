@@ -1,5 +1,26 @@
-out.*
-*/*.iml
+﻿#############
+## Idea
+#############
+target/
 .idea/
-out.log out.log.1
+.idea
+.repository/
+*.iml
+*.iws
+*.jrtc
+*.java
+*.class
+*.info
+*.properties
+*.jar
 
+/1.JavaSyntax/
+/2.JavaCore/
+/3.JavaMultithreading/
+/4.JavaCollections/
+/5.OnlineInternship/
+/out/
+/JavaRushPlugin.properties
+/Instruction.png
+/out.log
+/out.log.*
