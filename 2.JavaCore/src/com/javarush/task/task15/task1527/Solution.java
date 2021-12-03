@@ -13,46 +13,54 @@ import java.util.ArrayList;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        //String url = reader.readLine();
-        String url = "http://javarush.ru/alpha/index.html?lvl=15&view&name=Amigo";
+        String url = reader.readLine();
+        //String url = "http://javarush.ru/alpha/index.html?obj=3.14&name=Amigo";
         ArrayList<String> list = new ArrayList<String>();
         ArrayList<String> obj = new ArrayList<String>();
         //напишите тут ваш код
         int start = url.indexOf("?");
-        url = url.substring(start+1);
+        url = url.substring(start + 1);
         //System.out.println(url);
 
         while (url.contains("&")) {
-            String temp = (url.substring (0, (url.indexOf("&"))));
+            String temp = (url.substring(0, (url.indexOf("&"))));
             if (temp.contains("="))
-                obj.add(temp.substring(temp.indexOf("=")+1));
-                temp = temp.substring(0, temp.indexOf("="));
-            list.add(temp);
-            url = url.substring((url.indexOf("&"))+1);
+            {if ((temp.substring(0, temp.indexOf("="))).equals ("obj")) {
+                obj.add(temp.substring(temp.indexOf("=") + 1));}
 
+                temp = temp.substring(0, temp.indexOf("="));}
+            list.add(temp);
+            url = url.substring((url.indexOf("&")) + 1);
 
 
         }
-        if (url.length()>0){
+        if (url.length() > 0) {
             if (url.contains("="))
-                obj.add(url.substring(url.indexOf("=")+1));
-                url = url.substring(0, url.indexOf("="));
+                if ((url.substring(0, url.indexOf("="))).equals ("obj"))
+                    obj.add(url.substring(url.indexOf("=") + 1));
+            url = url.substring(0, url.indexOf("="));
 
             list.add(url);
         }
 
         for (int i = 0; i < list.size(); i++) {
 
+
             System.out.print(list.get(i));
-            if (i < list.size()-1)
+            if (i < list.size() - 1)
                 System.out.print(" ");
+            else System.out.println("");
 
         }
 
         for (int i = 0; i < obj.size(); i++) {
-            alert(obj.get(i));
+            try {
+                alert(Double.parseDouble(obj.get(i)));
 
 
+            } catch (NumberFormatException e) {
+                alert(obj.get(i));
+            }
         }
     }
 

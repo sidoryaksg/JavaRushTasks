@@ -1,6 +1,7 @@
 package com.javarush.task.task14.task1419;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Solution {
         }
     }
 
-    private static void initExceptions() {   //the first exception
+    private static void initExceptions() {   //it's first exception
         try {
             float i = 1 / 0;
 
@@ -27,72 +28,16 @@ public class Solution {
             exceptions.add(e);
         }
 
-        try {
-            String[] str = new String[4];
-            System.out.println(str[4]);
-        } catch (Exception e) {
-            exceptions.add(e);
-        }
+        //Add your code here
 
-        try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }
-
-        try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }
-
-
-
-        try {
-            String a = null;
-            int b = Integer.parseInt(a);
-        } catch (Exception e){
-            exceptions.add(e);
-
-        }
-
-        try {
-            int i = -3;
-            int[] a = new int[i];
-
-        } catch (Exception e) {
-            exceptions.add(e);
-        }
-
-        //напишите тут ваш код
-
+        exceptions.add(new ArrayIndexOutOfBoundsException());
+        exceptions.add(new IllegalArgumentException());
+        exceptions.add(new IllegalAccessException());
+        exceptions.add(new NumberFormatException());
+        exceptions.add(new ClassCastException());
+        exceptions.add(new IOException());
+        exceptions.add(new InterruptedIOException());
+        exceptions.add(new InterruptedException());
+        exceptions.add(new SecurityException());
     }
 }
