@@ -10,10 +10,11 @@ target/
 *.jrtc
 *.properties
 *.jar
+JavaRushPlugin.properties
 
 
 /out/
-/JavaRushPlugin.properties
+
 /Instruction.png
 /out.log
 /out.log.*
