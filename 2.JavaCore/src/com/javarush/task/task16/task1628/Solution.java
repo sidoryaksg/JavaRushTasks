@@ -45,19 +45,7 @@ public class Solution {
         private List<String> result = new ArrayList<String>();
 
         public void run() {
-            String string;            
-            try {
-                while (!Thread.currentThread().isInterrupted()) {
-                    if ((string = reader.readLine()) != null) {
-                        result.add(string);
-//                        System.out.println(toString());
-                        readStringCount.incrementAndGet();
-                    }
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //напишите тут ваш код
         }
 
         @Override
