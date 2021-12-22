@@ -22,8 +22,8 @@ public class Solution {
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
     static SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
+    
     public static void main(String[] args)  throws Exception {
-        //напишите тут ваш код
         if (args == null || args.length < 1 ) {
             throw new RuntimeException();
         }
@@ -34,7 +34,7 @@ public class Solution {
             case  "-c":
                 birthDate = simpleDateFormat.parse(args[3]);
 
-                if (args[2].equals("m")) {
+                if (args[2].equals("м")) {
                 person = Person.createMale(args[1], birthDate);
                 }
                 else {
@@ -43,15 +43,26 @@ public class Solution {
 
                 allPeople.add(person);
                 System.out.println(allPeople.size()-1);
+                break;
             case "-r":
                     person = allPeople.get(Integer.parseInt(args[1]));
+                    if (person != null) {
+                        System.out.println(person.getName() + " " + (person.getSex() == Sex.MALE ? "м" : "ж") + " " + simpleDateFormat2.format(person.getBirthDate()));
+                    }
+                    break;
+            case "-u":
+                int index = Integer.parseInt(args[1]);
+                allPeople.get(index).setName(args[2]);
+                allPeople.get(index).setSex(args[3] == "м" ? Sex.MALE : Sex.FEMALE);
+                allPeople.get(index).setBirthDate(simpleDateFormat.parse(args[4]));
 
-                System.out.println(allPeople.get(index).getName() + " " + allPeople.get(index).getSex(), simpleDateFormat2.format (allPeople.get(index).getBirthDate()));
-
+                break;
+            case "-d":
+                Person curPerson = allPeople.get(Integer.parseInt(args[1]));
+                curPerson.setBirthDate(null);
+                curPerson.setSex(null);
+                curPerson.setName(null);
+                break;
         }
-
-
-        
-        
     }
 }
