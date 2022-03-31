@@ -1,14 +1,12 @@
 package com.javarush.task.task18.task1827;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /* 
 Прайсы
+--C:\temp\1.txt
 */
 
 public class Solution {
@@ -24,22 +22,64 @@ public class Solution {
             this.price = price;
             this.quantity = quantity;
         }
-
+        
+        @Override
+        public String toString() {
+            return String.format("%-8d%-30s%-8s%-4s", id, productName, price, quantity);
+        }
     }
 
-
     public static void main(String[] args) throws Exception {
-        if (args.length == 0 )
+        if (args.length == 0) {
             return;
+        }
 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = reader.readLine();
 
-
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(System.in));
-        String path = bufferedReader.readLine();
         List<Product> products = new ArrayList<>();
 
-        if (args[0].equals("-c")) {
-
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
+            while (fileReader.ready()) {
+                Product product = getProduct(fileReader.readLine());
+                products.add(product);
+            }
         }
+        
+        switch (args[0]) {
+            case "-c":
+                int id =0;
+                for (Product product : products) {
+                    if (product.id > id) {id = product.id;}
+                }
+                String name = "";
+                for (int i = 1; i < args.length - 2; i++) {
+                    name += args[i] + " ";
+                }
+                if (name.length()>30){
+                    name = name.substring(0,30);
+                }
+                String price = args[args.length-2];
+                if (price.length()>8)
+                    price = price.substring(0, 8);
+                
+                String quantity = args[args.length - 1];
+                if (quantity.length() > 4){
+                    quantity = quantity.substring(0, 4);
+                }
+                Product product = new Product(++id, name.trim(), price, quantity);
+                try (FileWriter writer = new FileWriter(fileName, true)) {
+                    writer.write("\n");
+                    writer.write(product.toString());
+                }
+        }
+    }
+    
+    public static Product getProduct (String string){
+        String ID = string.substring(0, 8).trim();
+        String name = string.substring(8, 38).trim();
+        String price = string.substring(38, 46).trim();
+        String quantity = string.substring(46, 50).trim();
+        return new Product(Integer.parseInt(ID), name, price, quantity);
     }
 }
