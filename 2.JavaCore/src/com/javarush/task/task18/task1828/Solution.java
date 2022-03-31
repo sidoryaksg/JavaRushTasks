@@ -62,12 +62,15 @@ public class Solution {
                 if (quantity.length() > 4) {
                     quantity = quantity.substring(0, 4);
                 }
-                Product updProduct = new Product (id, name, price, quantity);
+                Product updProduct = null;
                 for (Product product : products) {
                     if (product.id == id){
-                         product.productName = name;
-                         product.quantity = quantity;
-                         product.price = price;
+                        updProduct = product;
+                    }
+                    if (updProduct != null){
+                        updProduct.productName = name;
+                        updProduct.quantity = quantity;
+                        updProduct.price = price;
                     }
                 }
                 break;
@@ -85,21 +88,21 @@ public class Solution {
                     }
                 }
 
-                try (FileWriter writer = new FileWriter(fileName)) {
-                    for (Product product : products){
-                        writer.write (product.toString());
-                        writer.write("\n");
-                    }
-                }
 
             }
         }
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for (Product product : products){
+                writer.write (product.toString());
+                writer.write("\n");
+            }
         }
+    }
         
         public static Product getProduct (String string){
         String id = string.substring(0, 8).trim();
         String name = string.substring(8, 38).trim();
-        String price = string.substring(38, 46);
+        String price = string.substring(38, 46).trim();
         String quantity = string.substring(46, 50).trim();
         return new Product(Integer.parseInt(id), name, price, quantity);
 
